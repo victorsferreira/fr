@@ -1,5 +1,1 @@
-const config = {
-    server: "process.env.APP_CONFIG.server"
-};
-
-export default config;
+export default JSON.parse(process.env.APP_CONFIG);

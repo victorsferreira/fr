@@ -2,11 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const envConfig = require("./env.json");
+const envConfig = require("./env.json");
 const env = process.env.NODE_ENV || "development";
 
 const parentDir = path.join(__dirname, '../');
-// const config = { ...process.env, APP_CONFIG: JSON.stringify(envConfig[env]) };
+const processEnv = { ...process.env, APP_CONFIG: JSON.stringify(envConfig[env]) };
 
 module.exports = {
     entry: './src/index.js',
@@ -19,40 +19,42 @@ module.exports = {
                     loader: 'babel-loader'
                 }
             },
-            // {
-            //     test: /\.css$/,
-            //     use: ["style-loader", "css-loader"]
-            // },
-            // {
-            //     test: /\.scss$/,
-            //     use: [
-            //         'style-loader',
-            //         "css-loader",
-            //         "sass-loader"
-            //     ]
-            // },
-            // {
-            //     test: /\.(jpg|png|gif|svg|pdf|ico)$/,
-            //     exclude: [
-            //         /\.html$/,
-            //         /\.(js|jsx)$/
-            //     ],
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: 'statics/[name]-[hash:8].[ext]'
-            //             },
-            //         },
-            //     ]
-            // }
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    "css-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+                exclude: [
+                    /\.html$/,
+                    /\.(js|jsx)$/
+                ],
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'statics/[name]-[hash:8].[ext]'
+                        },
+                    },
+                ]
+            }
         ]
     },
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js'
+        path: path.join(parentDir, '/dist'),
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     devServer: {
+        port: 3000,
         contentBase: parentDir,
         historyApiFallback: true
     },
@@ -60,10 +62,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        // new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) }),
-        // new MiniCssExtractPlugin({
-        //     filename: "[name].css",
-        //     chunkFilename: "[id].css"
-        // })
+        new webpack.DefinePlugin({ 'process.env': JSON.stringify(processEnv) }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
     ]
 };
