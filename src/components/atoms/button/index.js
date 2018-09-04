@@ -4,7 +4,7 @@ import StyledButton from './styled';
 class Button extends Component {
   render() {
     return (
-      <StyledButton />
+      <StyledButton {...this.props} type={this.props.onClick ? 'button' : null}>{this.props.children}</StyledButton>
     );
   }
 }

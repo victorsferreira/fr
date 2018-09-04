@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import yousages from './yousages';
+import session from './session';
 
 export default combineReducers({
-    yousages
+    session
 });

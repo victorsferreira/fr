@@ -1,6 +1,3 @@
-npm install
-npm run prd
-sudo docker stop frontend
-sudo docker rm frontend
-sudo docker-compose build
-sudo docker-compose up --force-recreate
+sudo docker-compose down -v --rmi all
+sudo docker-compose up --force-recreate --build -d
+sudo docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
