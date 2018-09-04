@@ -13,22 +13,22 @@ const routes = [
     { component: ForgotPassword, path: '/forgot-password' },
     { component: CreateAccount, path: '/account/create/:type' },
     { component: Home, path: '/home' },
-    { component: ResetPassword, path: '/reset-password/:token'}
+    { component: ResetPassword, path: '/reset-password/:token' }
 ];
 
 const Router = () => (
     <HashRouter>
-        <Master>
-            <Switch>
+        <Switch>
+            <Master>
                 {
                     routes.map((route, i) => {
                         return (
-                            <Route key={i} component={route.component} path={route.path} />
+                            <Route key={i} component={route.component} exact path={route.path} />
                         );
                     })
                 }
-            </Switch>
-        </Master>
+            </Master>
+        </Switch>
     </HashRouter>
 );
 
