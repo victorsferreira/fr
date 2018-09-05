@@ -1,19 +1,33 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { combineRoutes } from './libs/helpers';
 
 import Home from './pages/Home';
-import Login from './pages/account/Login';
-import ForgotPassword from './pages/account/ForgotPassword';
-import CreateAccount from './pages/account/CreateAccount';
-import ResetPassword from './pages/account/ResetPassword';
 import Master from './pages/Master';
 
+import accountRoutes from './pages/account/routes';
+import productCategoryRoutes from './pages/product-category/routes';
+import serviceCategoryRoutes from './pages/service-category/routes';
+import serviceSubcategoryRoutes from './pages/service-subcategory/routes';
+import productSubcategoryRoutes from './pages/product-subcategory/routes';
+import activityRoutes from './pages/activity/routes';
+import productRoutes from './pages/product/routes';
+import serviceRoutes from './pages/service/routes';
+
+const combinedRoutes = combineRoutes([
+    accountRoutes, 
+    productCategoryRoutes, 
+    serviceCategoryRoutes, 
+    serviceSubcategoryRoutes,
+    productSubcategoryRoutes, 
+    productRoutes, 
+    serviceRoutes, 
+    activityRoutes
+]);
+
 const routes = [
-    { component: Login, path: '/login' },
-    { component: ForgotPassword, path: '/forgot-password' },
-    { component: CreateAccount, path: '/account/create/:type' },
-    { component: Home, path: '/home' },
-    { component: ResetPassword, path: '/reset-password/:token' }
+    ...combinedRoutes,
+    { component: Home, path: '/home' }
 ];
 
 const Router = () => (
@@ -23,7 +37,7 @@ const Router = () => (
                 {
                     routes.map((route, i) => {
                         return (
-                            <Route key={i} component={route.component} exact path={route.path} />
+                            <Route exact key={i} component={route.component} path={route.path} />
                         );
                     })
                 }
@@ -31,22 +45,5 @@ const Router = () => (
         </Switch>
     </HashRouter>
 );
-
-{/* <Switch>
-            {
-                routes.map((route) => {
-                    const Component = route.component;
-                    return (
-                        <Route key={i} path={route.path} exact render={(props) => {
-                            return (
-                                <Master protected={route.protected} {...props}>
-                                    <Component {...props} {...route.props} />
-                                </Master>
-                            )
-                        }} />
-                    );
-                })
-            }
-        </Switch> */}
 
 export default Router;

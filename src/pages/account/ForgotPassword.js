@@ -34,6 +34,7 @@ class ForgotPassword extends Component {
   render() {
     return (
       <div className="ForgotPassword">
+        <h1>Esqueci a senha</h1>
         {
           this.state.success ? (
             <strong>

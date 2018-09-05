@@ -17,7 +17,10 @@ class Navbar extends Component {
             buttons = (
                 <div>
                     <Link to="/login">Login</Link>
-                    <Link to="/forgot-password">Forgot Password</Link>
+                    <Link to="/account/create/user">Criar usuário</Link>
+                    <Link to="/account/create/partner">Criar marca</Link>
+                    <Link to="/account/create/seller">Criar vendedor</Link>
+                    <Link to="/forgot-password">Esqueci a Senha</Link>
                 </div>
             );
         }

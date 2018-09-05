@@ -34,6 +34,7 @@ class ResetPassword extends Component {
   render() {
     return (
       <div>
+        <h1>Resetar a senha</h1>
         <div>
           <Input placeholder="password" onChange={this.onChange.bind(this, 'password')} type="password" />
           <Button onClick={this.resetPassword}>Enviar</Button>

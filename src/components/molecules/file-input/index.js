@@ -14,6 +14,10 @@ export default class ComboInput extends Component {
         if (this.props.onChange) this.props.onChange(value);
     };
 
+    remove = () => {
+        if (this.props.onChange) this.props.onChange('');
+    }
+
     render() {
         let imageProps = {};
         if (this.props.value) {

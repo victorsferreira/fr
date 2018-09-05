@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import Input from '../../components/atoms/input';
 import Button from '../../components/atoms/button';
@@ -29,14 +30,14 @@ class Login extends Component {
 
   userFields = () => {
     const genderOptions = [
-      { id: 'Masculino', name: 'male' },
-      { id: 'Feminino', name: 'female' },
-      { id: 'Outro', name: 'other' }
+      { name: 'Masculino', id: 'male' },
+      { name: 'Feminino', id: 'female' },
+      { name: 'Outro', id: 'other' }
     ];
 
     const privacyOptions = [
-      { id: 'Público', name: 'public' },
-      { id: 'Privado', name: 'private' }
+      { name: 'Público', id: 'public' },
+      { name: 'Privado', id: 'private' }
     ];
 
     return (
@@ -59,8 +60,6 @@ class Login extends Component {
   };
 
   partnerFields = () => {
-    const activityOptions = [];
-
     return (
       <Fragment>
         <Input placeholder="name" onChange={this.onChange.bind(this, 'name')} />
@@ -73,15 +72,13 @@ class Login extends Component {
         <Input placeholder="cover" onChange={this.onChange.bind(this, 'cover')} type="file" />
         <Input placeholder="photo" onChange={this.onChange.bind(this, 'photo')} type="file" />
         <Input placeholder="about" onChange={this.onChange.bind(this, 'about')} type="multiline" />
-        <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={activityOptions} />
+        <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={this.props.activity.list} />
         <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map"/>
       </Fragment>
     );
   };
 
   sellerFields = () => {
-    const activityOptions = [];
-
     return (
       <Fragment>
         <Input placeholder="name" onChange={this.onChange.bind(this, 'name')} />
@@ -94,7 +91,7 @@ class Login extends Component {
         <Input placeholder="cover" onChange={this.onChange.bind(this, 'cover')} type="file" />
         <Input placeholder="photo" onChange={this.onChange.bind(this, 'photo')} type="file" />
         <Input placeholder="about" onChange={this.onChange.bind(this, 'about')} type="multiline" />
-        <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={activityOptions} />
+        <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={this.props.activity.list} />
         <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map"/>
       </Fragment>
     );
@@ -136,4 +133,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = ({ activity }) => {
+    return { activity };
+}
+
+export default connect(mapStateToProps)(Login);
