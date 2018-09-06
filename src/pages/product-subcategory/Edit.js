@@ -14,7 +14,7 @@ class Edit extends Component {
         <h1>Editar subcategoria de produto</h1>
         
         <Link to={'/product-subcategory'} />
-        <Form save={this.edit} />
+        <Form {...this.props} save={this.edit} />
       </div>
     );
   }

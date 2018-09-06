@@ -11,9 +11,9 @@ class Create extends Component {
   render() {
     return (
       <div className="Create">
-        <h1>Criar categoria de serviço</h1>
+        <h1>Criar publicidade</h1>
         
-        <Link to={'/service-category'} />
+        <Link to={'/advertising'}>Lista de publicidades</Link>
         <Form {...this.props} save={this.create} />
       </div>
     );

@@ -14,7 +14,7 @@ class Create extends Component {
         <h1>Criar atividade</h1>
         
         <Link to={'/activity'} />
-        <Form save={this.create} />
+        <Form {...this.props} save={this.create} />
       </div>
     );
   }

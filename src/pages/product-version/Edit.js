@@ -13,10 +13,9 @@ class Edit extends Component {
   render() {
     return (
       <div className="Edit">
-        <h1>Editar serviço</h1>
+        <h1>Editar Versão de produto</h1>
         
-        <Link to={'/service'}>Lista de serviços</Link>
-        <Link to={`/service-version/${id}/create`}>Criar tipo de serviço</Link>
+        <Link to={'/product-version'}>Lista de Versão de produto</Link>
         <Form {...this.props} save={this.edit} />
       </div>
     );

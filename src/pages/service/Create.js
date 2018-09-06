@@ -13,8 +13,8 @@ class Create extends Component {
       <div className="Create">
         <h1>Criar serviço</h1>
         
-        <Link to={'/service'} />
-        <Form save={this.create} />
+        <Link to={'/service'}>Lista de serviços</Link>
+        <Form {...this.props} save={this.create} />
       </div>
     );
   }

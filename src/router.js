@@ -13,6 +13,10 @@ import productSubcategoryRoutes from './pages/product-subcategory/routes';
 import activityRoutes from './pages/activity/routes';
 import productRoutes from './pages/product/routes';
 import serviceRoutes from './pages/service/routes';
+import productVersionRoutes from './pages/product-version/routes';
+import serviceTypeRoutes from './pages/service-type/routes';
+import releaseRoutes from './pages/release/routes';
+import advertisingRoutes from './pages/advertising/routes';
 
 const combinedRoutes = combineRoutes([
     accountRoutes, 
@@ -20,9 +24,13 @@ const combinedRoutes = combineRoutes([
     serviceCategoryRoutes, 
     serviceSubcategoryRoutes,
     productSubcategoryRoutes, 
+    productVersionRoutes,
+    serviceTypeRoutes,
     productRoutes, 
     serviceRoutes, 
-    activityRoutes
+    activityRoutes,
+    releaseRoutes,
+    advertisingRoutes
 ]);
 
 const routes = [

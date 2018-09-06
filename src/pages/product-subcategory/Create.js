@@ -14,7 +14,7 @@ class Create extends Component {
         <h1>Criar subcategoria de produto</h1>
         
         <Link to={'/product-subcategory'} />
-        <Form save={this.create} />
+        <Form {...this.props} save={this.create} />
       </div>
     );
   }

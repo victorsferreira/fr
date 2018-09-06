@@ -14,7 +14,7 @@ class Edit extends Component {
         <h1>Editar atividade</h1>
         
         <Link to={'/activity'} />
-        <Form save={this.edit} />
+        <Form {...this.props} save={this.edit} />
       </div>
     );
   }

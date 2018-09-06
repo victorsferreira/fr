@@ -11,12 +11,12 @@ class Edit extends Component {
   };
 
   render() {
+    const { id } = this.props.match.params;
     return (
       <div className="Edit">
-        <h1>Editar serviço</h1>
+        <h1>Editar publicidade</h1>
         
-        <Link to={'/service'}>Lista de serviços</Link>
-        <Link to={`/service-version/${id}/create`}>Criar tipo de serviço</Link>
+        <Link to={'/advertising'}>Lista de publicidades</Link>
         <Form {...this.props} save={this.edit} />
       </div>
     );
