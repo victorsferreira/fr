@@ -17,6 +17,7 @@ import productVersionRoutes from './pages/product-version/routes';
 import serviceTypeRoutes from './pages/service-type/routes';
 import releaseRoutes from './pages/release/routes';
 import advertisingRoutes from './pages/advertising/routes';
+import galleryRoutes from './pages/gallery/routes';
 
 const combinedRoutes = combineRoutes([
     accountRoutes, 
@@ -30,7 +31,8 @@ const combinedRoutes = combineRoutes([
     serviceRoutes, 
     activityRoutes,
     releaseRoutes,
-    advertisingRoutes
+    advertisingRoutes,
+    galleryRoutes
 ]);
 
 const routes = [

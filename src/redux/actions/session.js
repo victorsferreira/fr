@@ -4,6 +4,9 @@ export const LOGOUT = 'LOGOUT';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const CREATE_SESSION = 'CREATE_SESSION';
+export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+export const LOAD_SESSION = 'LOAD_SESSION';
+export const UPDATE_SESSION = 'UPDATE_SESSION';
 
 export const logout = () => {
     return (dispatch) => {
@@ -54,6 +57,21 @@ export const resetPassword = (resetPassword, token) => {
                     type: RESET_PASSWORD,
                     payload: {
                         resetPassword, token
+                    }
+                });
+            })
+            .catch((err) => {});
+    }
+};
+
+export const getNotifications = () => {
+    return (dispatch) => {
+        return get('/account/notification').exec()
+            .then((response) => {
+                return dispatch({
+                    type: GET_NOTIFICATIONS,
+                    payload: {
+                        notifications: response.data
                     }
                 });
             })

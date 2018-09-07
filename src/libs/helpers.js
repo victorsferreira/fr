@@ -4,10 +4,6 @@ export function persistSession(data) {
     ls('session', JSON.stringify(data));
 }
 
-export function isNumeric(input) {
-    return !isNaN(parseFloat(input)) && isFinite(input);
-}
-
 export function getPersistedSession() {
     const session = ls('session');
     if (session) {
@@ -19,6 +15,10 @@ export function getPersistedSession() {
 
 export function deletePersistedSession() {
     return ls.remove('session');
+}
+
+export function isNumeric(input) {
+    return !isNaN(parseFloat(input)) && isFinite(input);
 }
 
 export function upperCaseFirstLetter(input) {
