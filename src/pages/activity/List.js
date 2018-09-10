@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
- 
+import { Link } from 'react-router-dom';
 import Item from './Item';
+import Page from '../Page';
 
-import { getResource } from '../../redux/actions'
+import { getResourceList, deleteResourceItem } from '../../redux/actions';
 
-class List extends Component {
+class List extends Page {
   constructor() {
     super();
 
     this.state = {
       list: []
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getResourceList('activity', { scope: this }))
   }
 
   onChange = (id, value) => {
@@ -22,7 +27,10 @@ class List extends Component {
   };
 
   delete = (id) => {
-    console.log(id);
+    this.props.dispatch(deleteResourceItem('activity', id))
+      .then(() => {
+        this.reload();
+      });
   };
 
   render() {
@@ -41,4 +49,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default connect()(List);

@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
- 
 import Item from './Item';
+import Page from '../Page';
 
 import { getResource } from '../../redux/actions'
 
-class List extends Component {
+class List extends Page {
   constructor() {
     super();
 
@@ -14,15 +15,22 @@ class List extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.dispatch(getResourceList('service-category', { scope: this }))
+  }
+
   onChange = (id, value) => {
     const { state } = this;
     state[id] = value;
 
     this.setState(state);
   };
-
+  
   delete = (id) => {
-    console.log(id);
+    this.props.dispatch(deleteResourceItem('service-category', id))
+      .then(() => {
+        this.reload();
+      });
   };
 
   render() {
@@ -41,4 +49,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default connect()(List);

@@ -6,6 +6,6 @@ import Profile from './Profile';
 export default [
     { component: List, path: '/service' },
     { component: Create, path: '/service/create' },
-    { component: Edit, path: '/service/:id' },
+    { component: Edit, path: '/service/:id/edit' },
     { component: Profile, path: '/service/:id/profile' },
 ];

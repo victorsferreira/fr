@@ -7,6 +7,6 @@ export default [
     { component: List, path: '/service-type' },
     { component: Create, path: '/service-type/:service/create' },
     { component: Create, path: '/service-type/create' },
-    { component: Edit, path: '/service-type/:id' },
+    { component: Edit, path: '/service-type/:id/edit' },
     { component: Profile, path: '/service-type/:id/profile' },
 ];

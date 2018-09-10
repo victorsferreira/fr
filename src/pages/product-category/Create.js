@@ -8,7 +8,7 @@ import Form from './Form';
 
 class Create extends Component {
   create = (data) => {
-    this.props.dispatch(createResourceItem('product-category', data))
+    this.props.dispatch(createResourceItem('activity', data));
   };
 
   render() {

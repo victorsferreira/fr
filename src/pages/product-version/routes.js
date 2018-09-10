@@ -7,6 +7,6 @@ export default [
     { component: List, path: '/product-version' },
     { component: Create, path: '/product-version/:product/create' },
     { component: Create, path: '/product-version/create' },
-    { component: Edit, path: '/product-version/:id' },
+    { component: Edit, path: '/product-version/:id/edit' },
     { component: Profile, path: '/product-version/:id/profile' },
 ];

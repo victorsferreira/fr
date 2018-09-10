@@ -6,6 +6,6 @@ import Profile from './Profile';
 export default [
     { component: List, path: '/advertising' },
     { component: Create, path: '/advertising/create' },
-    { component: Edit, path: '/advertising/:id' },
+    { component: Edit, path: '/advertising/:id/edit' },
     { component: Profile, path: '/advertising/:id/profile' },
 ];

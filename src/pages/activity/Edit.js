@@ -1,11 +1,28 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { getResourceItem, editResourceItem } from '../../redux/actions';
 
 import Form from './Form';
 
 class Edit extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      item: null
+    };
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.dispatch(getResourceItem('activity', id, {scope: this}));
+  }
+
   edit = (data) => {
-    console.log(data)
+    const { id } = this.props.match.params;
+    this.props.dispatch(editResourceItem('activity', id, data))
   };
 
   render() {
@@ -20,4 +37,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default connect()(Edit);
