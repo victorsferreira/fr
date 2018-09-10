@@ -1,10 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Input from '../../components/atoms/input';
 import Button from '../../components/atoms/button';
 
-class Login extends Component {
+import Page from '../Page';
+
+import { register } from '../../redux/actions';
+
+class Login extends Page {
   constructor() {
     super();
 
@@ -18,13 +22,18 @@ class Login extends Component {
 
   register = () => {
     const { type } = this.props.match.params;
-    console.log(this.state)
+    const data = { ...this.state };
+
+    this.props.dispatch(register(type, data))
+      .then(() => {
+        this.redirect('/home');
+      });
   };
 
   onChange = (id, value) => {
     const { state } = this;
     state[id] = value;
-    
+
     this.setState(state);
   };
 
@@ -73,7 +82,7 @@ class Login extends Component {
         <Input placeholder="photo" onChange={this.onChange.bind(this, 'photo')} type="file" />
         <Input placeholder="about" onChange={this.onChange.bind(this, 'about')} type="multiline" />
         <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={this.props.activity.list} />
-        <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map"/>
+        <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map" />
       </Fragment>
     );
   };
@@ -92,7 +101,7 @@ class Login extends Component {
         <Input placeholder="photo" onChange={this.onChange.bind(this, 'photo')} type="file" />
         <Input placeholder="about" onChange={this.onChange.bind(this, 'about')} type="multiline" />
         <Input placeholder="activity" onChange={this.onChange.bind(this, 'activity')} type="combo" options={this.props.activity.list} />
-        <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map"/>
+        <Input placeholder="address" onChange={this.onChange.bind(this, 'address')} type="map" />
       </Fragment>
     );
   };
@@ -134,7 +143,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = ({ activity }) => {
-    return { activity };
+  return { activity };
 }
 
 export default connect(mapStateToProps)(Login);

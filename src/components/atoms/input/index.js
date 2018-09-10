@@ -7,75 +7,75 @@ import FileInput from '../../molecules/file-input';
 import MapInput from '../../molecules/map-input';
 
 export default class Input extends Component {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.state = {
-            value: ''
-        };
+    this.state = {
+      value: ''
+    };
+  }
+
+  onChange = (value) => {
+    this.setState({ value });
+    if (this.props.onChange) this.props.onChange(value);
+  }
+
+  setValue(value = '') {
+    this.setState({ value });
+    if (this.props.onChange) this.props.onChange(value);
+  }
+
+  componentDidUpdate(props) {
+    if (this.props.value !== props.value) {
+      this.setValue(this.props.value);
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.value) {
+      this.setValue(this.props.value);
+    }
+  }
+
+  render() {
+    const props = {
+      ...this.props,
+      onChange: this.onChange,
+      removeField: this.removeField
     }
 
-    onChange = (value) => {
-        this.setState({ value });
-        if(this.props.onChange) this.props.onChange(value);
+    if (this.props.type === 'combo') {
+      return (
+        <ComboInput {...props} options={this.props.options} />
+      );
     }
 
-    setValue(value = '') {
-        this.setState({ value });
-        if(this.props.onChange) this.props.onChange(value);
+    if (this.props.type === 'multiline') {
+      return (
+        <MultilineInput {...props} value={this.state.value} />
+      );
     }
 
-    componentDidUpdate(props) {
-        if (this.props.value !== props.value) {
-            this.setValue(this.props.value);
-        }
+    if (this.props.type === 'file') {
+      return (
+        <FileInput {...props} value={this.state.value} />
+      );
     }
 
-    componentDidMount() {
-        if (this.props.value) {
-            this.setValue(this.props.value);
-        }
+    if (this.props.type === 'map') {
+      return (
+        <MapInput {...props} value={this.state.value} />
+      );
     }
 
-    render() {
-        const props = {
-            ...this.props,
-            onChange: this.onChange,
-            removeField: this.removeField
-          }
-      
-          if (this.props.type === 'combo') {
-            return (
-              <ComboInput {...props} options={this.props.options} />
-            );
-          }
-
-          if (this.props.type === 'multiline') {
-            return (
-              <MultilineInput {...props} />
-            );
-          }
-
-          if (this.props.type === 'file') {
-            return (
-              <FileInput {...props} value={this.state.value} />
-            );
-          }
-
-          if (this.props.type === 'map') {
-            return (
-              <MapInput {...props} value={this.state.value} />
-            );
-          }
-
-          if (this.props.type === 'datetime') {
-            return (
-              <DatetimeInput {...props} />
-            );
-          }
-      
-          return (
-            <TextInput {...props} type={this.props.type} />
-          );
+    if (this.props.type === 'datetime') {
+      return (
+        <DatetimeInput {...props} />
+      );
     }
+
+    return (
+      <TextInput {...props}  value={this.state.value} type={this.props.type} />
+    );
+  }
 }

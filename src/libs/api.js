@@ -63,7 +63,6 @@ export const createFormDataFromArray = (array) => {
 
 function resolveHeaders(headers = {}) {
     const token = getToken();
-
     if (token) headers['Authorization'] = `Bearer ${token}`;
     if (!('Content-Type' in headers)) headers['Content-Type'] = 'application/json';
 

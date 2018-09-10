@@ -31,9 +31,9 @@ class List extends Component {
         <h1>Categorias de serviço</h1>
         
         <Link to={'/service-category/create'}>Criar categoria de serviço</Link>
-        {this.state.list.map((item) => {
+        {this.state.list.map((item, i) => {
           return (
-            <Item {...item} delete={this.delete} />
+            <Item key={i} {...item} delete={this.delete} />
           )
         })}
       </div>

@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import Input from '../../components/atoms/input';
 import Button from '../../components/atoms/button';
 
-class Login extends Component {
+import Page from '../Page';
+
+import { login } from '../../redux/actions';
+
+class Login extends Page {
   constructor() {
     super();
 
@@ -14,13 +19,16 @@ class Login extends Component {
   }
 
   login = () => {
-    console.log(this.state)
+    this.props.dispatch(login(this.state.username, this.state.password))
+      .then(() => {
+        this.redirect('/home');
+      });
   };
 
   onChange = (id, value) => {
     const { state } = this;
     state[id] = value;
-    
+
     this.setState(state);
   };
 
@@ -39,4 +47,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect()(Login);

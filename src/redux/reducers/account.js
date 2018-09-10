@@ -1,13 +1,14 @@
-import { REGISTER } from '../actions/account';
+import { MY_PROFILE } from '../actions/account';
 
 const defaultState = {
-    
+    myProfile: {}
 };
 
 const account = (state = defaultState, action) => {
     switch (action.type) {
-        case REGISTER: {
-            return { ...state }
+        case MY_PROFILE: {
+            const { myProfile } = action.payload;
+            return { ...state, myProfile }
         }
 
         default:

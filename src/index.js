@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ls from 'local-storage';
 import registerServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
@@ -7,7 +8,11 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import Router from './router';
 
-// const store = createStore(reducers, applyMiddleware(thunk));
+try{
+    ls('session');
+}catch(e){
+    ls('session', "{}");
+}
 
 ReactDOM.render(
     <Provider store={store}>

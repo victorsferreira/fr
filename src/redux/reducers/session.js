@@ -1,4 +1,5 @@
 import { LOGOUT, GET_NOTIFICATIONS, CREATE_SESSION, LOAD_SESSION, UPDATE_SESSION } from '../actions/session';
+import { persistSession, getPersistedSession, deletePersistedSession } from '../../libs/helpers'
 
 const defaultState = {
     loaded: false,
@@ -17,7 +18,6 @@ const session = (state = defaultState, action) => {
 
         case CREATE_SESSION: {
             const data = action.payload;
-
             persistSession(data);
 
             const { token, account } = data;

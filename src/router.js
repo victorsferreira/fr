@@ -20,15 +20,15 @@ import advertisingRoutes from './pages/advertising/routes';
 import galleryRoutes from './pages/gallery/routes';
 
 const combinedRoutes = combineRoutes([
-    accountRoutes, 
-    productCategoryRoutes, 
-    serviceCategoryRoutes, 
+    accountRoutes,
+    productCategoryRoutes,
+    serviceCategoryRoutes,
     serviceSubcategoryRoutes,
-    productSubcategoryRoutes, 
+    productSubcategoryRoutes,
     productVersionRoutes,
     serviceTypeRoutes,
-    productRoutes, 
-    serviceRoutes, 
+    productRoutes,
+    serviceRoutes,
     activityRoutes,
     releaseRoutes,
     advertisingRoutes,
@@ -37,21 +37,26 @@ const combinedRoutes = combineRoutes([
 
 const routes = [
     ...combinedRoutes,
-    { component: Home, path: '/home' }
+    { component: Home, path: '/home', protected: 'any' }
 ];
 
 const Router = () => (
     <HashRouter>
         <Switch>
-            <Master>
-                {
-                    routes.map((route, i) => {
-                        return (
-                            <Route exact key={i} component={route.component} path={route.path} />
-                        );
-                    })
-                }
-            </Master>
+            {
+                routes.map((route, i) => {
+                    const Component = route.component;
+                    return (
+                        <Route exact key={i} path={route.path} render={(props) => {
+                            return (
+                                <Master {...props} {...route.props} protected={route.protected}>
+                                    <Component {...props} {...route.props} />
+                                </Master>
+                            )
+                        }} />
+                    );
+                })
+            }
         </Switch>
     </HashRouter>
 );

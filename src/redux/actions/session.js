@@ -8,9 +8,15 @@ export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
 export const LOAD_SESSION = 'LOAD_SESSION';
 export const UPDATE_SESSION = 'UPDATE_SESSION';
 
+export const loadSession = () => {
+    return {
+        type: LOAD_SESSION
+    };
+};
+
 export const logout = () => {
     return (dispatch) => {
-        return post('/account/logout').exec()
+        return get('/account/logout').exec()
             .then((response) => {
                 return dispatch({
                     type: LOGOUT
@@ -24,12 +30,16 @@ export const logout = () => {
     };
 };
 
-export const login = () => {
+export const login = (username, password) => {
     return (dispatch) => {
-        return post('/account/login').exec()
+        return post('/account/login', { username, password }).exec()
             .then((response) => {
                 return dispatch({
-                    type: CREATE_SESSION
+                    type: CREATE_SESSION,
+                    payload: {
+                        token: response.headers['x-access-token'],
+                        account: response.data
+                    }
                 });
             });
     };
@@ -60,7 +70,7 @@ export const resetPassword = (resetPassword, token) => {
                     }
                 });
             })
-            .catch((err) => {});
+            .catch((err) => { });
     }
 };
 
@@ -75,6 +85,6 @@ export const getNotifications = () => {
                     }
                 });
             })
-            .catch((err) => {});
+            .catch((err) => { });
     }
 };
