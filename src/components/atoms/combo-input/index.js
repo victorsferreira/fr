@@ -6,6 +6,14 @@ export default class ComboInput extends Component {
         super();
     }
 
+    componentDidMount() {
+        const { value, options } = this.props;
+        if (!value && Array.isArray(options)) {
+            const defaultValue = options[0].id;        
+            if (this.props.onChange) this.props.onChange(defaultValue);
+        }
+    }
+
     onChange = (e) => {
         const { value } = e.target;
         if (this.props.onChange) this.props.onChange(value);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Item from './Item';
 import Page from '../Page';
@@ -38,10 +38,10 @@ class List extends Page {
       <div className="List">
         <h1>Atividade</h1>
         
-        <Link to={'/activity/create'}>Criar categoria de atividade</Link>
-        {this.state.list.map((item) => {
+        <Link to={'/activity/create'}>Criar atividade</Link>
+        {this.state.list.map((item, i) => {
           return (
-            <Item {...item} delete={this.delete} />
+            <Item {...item} key={i} delete={this.delete} />
           )
         })}
       </div>

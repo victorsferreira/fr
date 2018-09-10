@@ -39,9 +39,9 @@ class List extends Page {
         <h1>Subcategorias de serviço</h1>
         
         <Link to={'/service-subcategory/create'}>Criar subcategoria de serviço</Link>
-        {this.state.list.map((item) => {
+        {this.state.list.map((item, i) => {
           return (
-            <Item {...item} delete={this.delete} />
+            <Item {...item} key={i} delete={this.delete} />
           )
         })}
       </div>

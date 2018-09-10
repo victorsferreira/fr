@@ -46,7 +46,7 @@ export default class Input extends Component {
 
     if (this.props.type === 'combo') {
       return (
-        <ComboInput {...props} options={this.props.options} />
+        <ComboInput {...props} options={this.props.options} value={this.state.value} />
       );
     }
 

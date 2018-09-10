@@ -4,7 +4,7 @@ import List from './List';
 import Profile from './Profile';
 
 export default [
-    { component: List, path: '/product-version' },
+    { component: List, path: '/product-version/list' },
     { component: Create, path: '/product-version/:product/create' },
     { component: Create, path: '/product-version/create' },
     { component: Edit, path: '/product-version/:id/edit' },

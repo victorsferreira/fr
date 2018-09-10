@@ -26,7 +26,6 @@ class Form extends Component {
     };
     
     render() { 
-        console.log(this.props)
         return (
             <div>
                 <Input value={this.props.name} placeholder="name" onChange={this.onChange.bind(null, 'name')} />

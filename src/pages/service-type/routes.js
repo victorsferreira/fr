@@ -4,7 +4,7 @@ import List from './List';
 import Profile from './Profile';
 
 export default [
-    { component: List, path: '/service-type' },
+    { component: List, path: '/service-type/list' },
     { component: Create, path: '/service-type/:service/create' },
     { component: Create, path: '/service-type/create' },
     { component: Edit, path: '/service-type/:id/edit' },

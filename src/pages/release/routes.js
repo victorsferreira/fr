@@ -4,7 +4,7 @@ import List from './List';
 import Profile from './Profile';
 
 export default [
-    { component: List, path: '/release' },
+    { component: List, path: '/release/list' },
     { component: Create, path: '/release/create' },
     { component: Edit, path: '/release/:id/edit' },
     { component: Profile, path: '/release/:id/profile' },
