@@ -1,4 +1,4 @@
-import { get, del, put, post } from '../../libs/api';
+import { get, del, put, post, createFormData } from '../../libs/api';
 
 import { toActionName, toReducerName } from '../../libs/helpers';
 import { getReducerState } from '../store';
@@ -89,6 +89,7 @@ export function deleteResourceItem(resource, id, options) {
 
 export function editResourceItem(resource, id, data, options = {}) {
     const type = `EDIT_${toActionName(resource)}_ITEM`;
+    if(options.formData) data = createFormData(data);
 
     return (dispatch) => {
         return put(`${resource}/${id}`, data).exec()
@@ -109,6 +110,7 @@ export function editResourceItem(resource, id, data, options = {}) {
 
 export function createResourceItem(resource, data, options = {}) {
     const type = `CREATE_${toActionName(resource)}_ITEM`;
+    if(options.formData) data = createFormData(data);
 
     return (dispatch) => {
         return post(`${resource}`, data).exec()

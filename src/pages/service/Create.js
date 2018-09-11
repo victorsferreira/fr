@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { createResourceItem } from '../../redux/actions';
 
 import Form from './Form';
 
 class Create extends Component {
   create = (data) => {
-    console.log(data)
+    this.props.dispatch(createResourceItem('service', data, {formData: true}));
   };
 
   render() {
@@ -20,4 +23,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default connect()(Create);

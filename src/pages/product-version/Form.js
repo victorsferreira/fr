@@ -41,14 +41,14 @@ class Form extends Component {
 
         return (
             <div>
-                <Input placeholder='Nome' onChange={this.onChange.bind(null, 'name')} />
-                <Input placeholder='Descrição' onChange={this.onChange.bind(null, 'description')} type="multiline" />
+                <Input value={this.props.name} placeholder='Nome' onChange={this.onChange.bind(null, 'name')} />
+                <Input value={this.props.description} placeholder='Descrição' onChange={this.onChange.bind(null, 'description')} type="multiline" />
 
-                <Input placeholder='Foto' onChange={this.onChange.bind(null, 'photo')} type="file" />
-                <Input placeholder='Capa' onChange={this.onChange.bind(null, 'cover')} type="file" />
+                <Input value={this.props.photo} placeholder='Foto' onChange={this.onChange.bind(null, 'photo')} type="file" />
+                <Input value={this.props.cover} placeholder='Capa' onChange={this.onChange.bind(null, 'cover')} type="file" />
 
                 {
-                    product && <Input placeholder="Produto" onChange={this.onChange.bind(null, 'product')} type="combo" options={this.props.product.self} />
+                    product && <Input value={this.props.product} placeholder="Produto" onChange={this.onChange.bind(null, 'product')} type="combo" options={this.props.product.self} />
                 }
 
                 <Button onClick={this.save}>Salvar</Button>

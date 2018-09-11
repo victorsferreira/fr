@@ -1,20 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import Item from './Item';
+import Page from '../Page';
 
-class List extends Component {
+import { getResourceList, deleteResourceItem } from '../../redux/actions';
+
+class List extends Page {
   constructor() {
     super();
 
     this.state = {
-      list: [
-        {
-          id: 'product-version-1',
-          name: 'product-version 1'
-        }
-      ]
+      list: []
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getResourceList('product-version', { scope: this }))
   }
 
   onChange = (id, value) => {
@@ -25,12 +27,13 @@ class List extends Component {
   };
 
   delete = (id) => {
-    console.log(id);
+    this.props.dispatch(deleteResourceItem('product-version', id))
+      .then(() => {
+        this.reload();
+      });
   };
 
   render() {
-    const { type } = this.props.match.params;
-
     return (
       <div className="List">
         <h1>Categorias de Versão de produto</h1>
@@ -46,4 +49,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default connect()(List);

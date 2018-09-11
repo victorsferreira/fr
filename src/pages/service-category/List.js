@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Item from './Item';
 import Page from '../Page';
 
-import { getResource } from '../../redux/actions'
+import { getResourceList, deleteResourceItem } from '../../redux/actions'
 
 class List extends Page {
   constructor() {

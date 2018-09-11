@@ -31,15 +31,16 @@ class Form extends Component {
     };
 
     render() {
+        const year = this.props.extra ? this.props.extra.year : '';
         return (
             <div>
-                <Input placeholder="Nome" onChange={this.onChange.bind(null, 'name')} />
-                <Input placeholder="Descrição" onChange={this.onChange.bind(null, 'description')} type="multiline" />
-                <Input placeholder="Ano" onChange={this.onChange.bind(null, 'year')} />
-                <Input placeholder='Photo' onChange={this.onChange.bind(null, 'photo')} type="file" />
-                <Input placeholder='Cover' onChange={this.onChange.bind(null, 'cover')} type="file" />
-                <Input placeholder="Categoria" onChange={this.onChange.bind(null, 'category')} type="combo" options={this.props.category.serviceCategory} />
-                <Input placeholder="Subcategoria" onChange={this.onChange.bind(null, 'subcategory')} type="combo" options={this.props.category.serviceSubcategory} />
+                <Input value={this.props.name} placeholder="Nome" onChange={this.onChange.bind(null, 'name')} />
+                <Input value={this.props.description} placeholder="Descrição" onChange={this.onChange.bind(null, 'description')} type="multiline" />
+                <Input value={year} placeholder="Ano" onChange={this.onChange.bind(null, 'year')} />
+                <Input value={this.props.photo} placeholder='Photo' onChange={this.onChange.bind(null, 'photo')} type="file" />
+                <Input value={this.props.cover} placeholder='Cover' onChange={this.onChange.bind(null, 'cover')} type="file" />
+                <Input value={this.props.category} placeholder="Categoria" onChange={this.onChange.bind(null, 'category')} type="combo" options={this.props.category.serviceCategory} />
+                <Input value={this.props.subcategory} placeholder="Subcategoria" onChange={this.onChange.bind(null, 'subcategory')} type="combo" options={this.props.category.serviceSubcategory} />
 
                 <Button onClick={this.save}>Salvar</Button>
             </div>

@@ -9,8 +9,12 @@ export default class ComboInput extends Component {
     componentDidMount() {
         const { value, options } = this.props;
         if (!value && Array.isArray(options)) {
-            const defaultValue = options[0].id;        
-            if (this.props.onChange) this.props.onChange(defaultValue);
+            const firstOption = options[0];
+
+            if (firstOption) {
+                const defaultValue = firstOption.id;
+                if (this.props.onChange) this.props.onChange(defaultValue);
+            }
         }
     }
 

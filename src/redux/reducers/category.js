@@ -8,8 +8,8 @@ import {
 const defaultState = {
     productCategory: [{id: 1, name: 'produto 1'}, {id: 2, name: 'produto 2'}],
     serviceCategory: [{id: 1, name: 'serviço 1'}, {id: 2, name: 'serviço 2'}],
-    productSubcategory: [],
-    serviceSubcategory: []
+    productSubcategory: [{id: 1, name: 'sub produto 1'}, {id: 2, name: 'sub produto 2'}],
+    serviceSubcategory: [{id: 1, name: 'sub serviço 1'}, {id: 2, name: 'sub serviço 2'}]
 };
 
 const category = (state = defaultState, action) => {
