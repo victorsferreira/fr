@@ -54,8 +54,8 @@ class Form extends Component {
     render() {
         return (
             <div>
-                <Input placeholder="Nome" onChange={this.onChange.bind(null, 'name')} />
-                <Input placeholder="Descrição" onChange={this.onChange.bind(null, 'description')} type="multiline" />
+                <Input value={this.props.name} placeholder="Nome" onChange={this.onChange.bind(null, 'name')} />
+                <Input value={this.props.description} placeholder="Descrição" onChange={this.onChange.bind(null, 'description')} type="multiline" />
 
                 {
                     this.state.photos.map((photoProps, i) => {

@@ -1,14 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Button from '../../components/atoms/button';
+import { getResourceItem, editResourceItem } from '../../redux/actions';
 
 import Form from './Form';
 
 class Edit extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      item: null
+    };
+  }
+
   edit = (data) => {
-    console.log(data)
+    const { id } = this.props.match.params;
+    this.props.dispatch(editResourceItem('release', id, data, {formData: true}))
   };
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.dispatch(getResourceItem('release', id, { scope: this }));
+  }
 
   render() {
     const { id } = this.props.match.params;
@@ -17,10 +32,10 @@ class Edit extends Component {
         <h1>Editar lançamento</h1>
         
         <Link to={'/release'}>Lista de lançamentos</Link>
-        <Form {...this.props} save={this.edit} />
+        <Form {...this.props} {...this.state.item} save={this.edit} />
       </div>
     );
   }
 }
 
-export default Edit;
+export default connect()(Edit);

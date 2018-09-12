@@ -1,20 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import Item from './Item';
+import Page from '../Page';
 
-class List extends Component {
+import { getResourceList, deleteResourceItem } from '../../redux/actions';
+
+class List extends Page {
   constructor() {
     super();
 
     this.state = {
-      list: [
-        {
-          id: 'advertising-1',
-          name: 'advertising 1'
-        }
-      ]
+      list: []
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getResourceList('advertising', { scope: this }))
   }
 
   onChange = (id, value) => {
@@ -25,17 +27,18 @@ class List extends Component {
   };
 
   delete = (id) => {
-    console.log(id);
+    this.props.dispatch(deleteResourceItem('advertising', id))
+      .then(() => {
+        this.reload();
+      });
   };
 
   render() {
-    const { type } = this.props.match.params;
-
     return (
       <div className="List">
-        <h1>Categorias de publicidade</h1>
+        <h1>Lista de anúncios</h1>
 
-        <Link to={'/advertising/create'}>Criar publicidade</Link>
+        <Link to={'/advertising/create'}>Criar anúncio</Link>
         {this.state.list.map((item, i) => {
           return (
             <Item key={i} {...item} delete={this.delete} />
@@ -46,4 +49,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default connect()(List);

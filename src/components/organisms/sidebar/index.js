@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
                 <li><Link to="/service/list">Serviços</Link></li>
                 <li><Link to="/product-version/list">Versão de produto</Link></li>
                 <li><Link to="/service-type/list">Tipo de serviço</Link></li>
-                <li><Link to="/partner-advertising/list">Anúncio</Link></li>
+                <li><Link to="/release/list">Lançamento</Link></li>
             </Fragment>
         );
     }
@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
     getSellerButtons() {
         return (
             <Fragment>
-                <li><Link to="/seller-advertising/list">Anúncio</Link></li>
+                <li><Link to="/advertising/list">Anúncio</Link></li>
             </Fragment>
         );
     }
@@ -44,7 +44,6 @@ export default class Sidebar extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <StyledSidebar>
                 <li><Link to={"/my-profile"}>Meu perfil</Link></li>

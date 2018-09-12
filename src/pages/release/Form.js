@@ -13,7 +13,7 @@ class Form extends Component {
             description: '',
             photo: '',
             launch: '',
-            type: '',
+            itemType: '',
         };
     }
 
@@ -34,14 +34,17 @@ class Form extends Component {
             { id: 'service', name: 'Serviço' }
         ];
 
+        const launch = this.props.extra ? this.props.extra.launch : '';
+        const name = this.props.extra ? this.props.extra.name : '';
+
         return (
             <div>
 
-                <Input placeholder='Título' onChange={this.onChange.bind(null, 'name')} />
-                <Input placeholder='Descrição' onChange={this.onChange.bind(null, 'description')} type="multiline" />
-                <Input placeholder='Foto' onChange={this.onChange.bind(null, 'photo')} type="file" />
-                <Input placeholder='Lançamento' onChange={this.onChange.bind(null, 'launch')} type="datetime" />
-                <Input placeholder='Tipo' onChange={this.onChange.bind(null, 'type')} type='combo' options={typeOptions} />
+                <Input value={name} placeholder='Título' onChange={this.onChange.bind(null, 'name')} />
+                <Input value={this.props.description} placeholder='Descrição' onChange={this.onChange.bind(null, 'description')} type="multiline" />
+                <Input value={this.props.photo} placeholder='Foto' onChange={this.onChange.bind(null, 'photo')} type="file" />
+                <Input value={launch} placeholder='Lançamento' onChange={this.onChange.bind(null, 'launch')} type="datetime" />
+                <Input value={this.props.itemType} placeholder='Tipo' onChange={this.onChange.bind(null, 'itemType')} type='combo' options={typeOptions} />
 
                 <Button onClick={this.save}>Editar</Button>
             </div>

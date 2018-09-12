@@ -1,20 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import Item from './Item';
+import Page from '../Page';
 
-class List extends Component {
+import { getResourceList, deleteResourceItem } from '../../redux/actions';
+
+class List extends Page {
   constructor() {
     super();
 
     this.state = {
-      list: [
-        {
-          id: 'gallery-1',
-          name: 'gallery 1'
-        }
-      ]
+      list: []
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getResourceList('gallery', { scope: this }))
   }
 
   onChange = (id, value) => {
@@ -25,12 +27,13 @@ class List extends Component {
   };
 
   delete = (id) => {
-    console.log(id);
+    this.props.dispatch(deleteResourceItem('gallery', id))
+      .then(() => {
+        this.reload();
+      });
   };
 
   render() {
-    const { type } = this.props.match.params;
-
     return (
       <div className="List">
         <h1>Categorias de galeria</h1>
@@ -46,4 +49,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default connect()(List);

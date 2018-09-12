@@ -5,7 +5,7 @@ import Button from '../../components/atoms/button';
 export default (props) => {
     return (
         <div>
-            <Link to={`/advertising/${props.id}/edit`}>{props.name}</Link>
+            <Link to={`/advertising/${props.id}/edit`}>{props.extra.link}</Link>
             <Button onClick={() => { props.delete(props.id) }}>Deletar</Button>
         </div>
     );
