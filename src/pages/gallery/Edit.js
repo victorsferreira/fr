@@ -32,7 +32,7 @@ class Edit extends Component {
         <h1>Editar galeria</h1>
         
         <Link to={'/gallery'}>Lista de galerias</Link>
-        {/* <Link to={`/gallery-photos/${id}`}>Fotos da galeria</Link> */}
+        <Link to={`/gallery/${id}/photos`}>Fotos da galeria</Link>
         <Form {...this.props} {...this.state.item} save={this.edit} />
       </div>
     );

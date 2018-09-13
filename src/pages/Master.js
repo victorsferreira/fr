@@ -25,7 +25,10 @@ class Master extends Page {
   };
 
   logout = () => {
-    this.props.dispatch(logout());
+    this.props.dispatch(logout())
+      .then(() => {
+        this.redirect('/login');
+      });
   };
 
   redirect(location) {
@@ -44,7 +47,7 @@ class Master extends Page {
     const loggedIn = this.isLoggedIn();
     const { account, loaded } = this.props.session;
     const { type } = account;
-    
+
     return (
       <div className="Master">
         {

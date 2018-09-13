@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StyledNavbar from './styled';
 import { Link } from 'react-router-dom';
 import Button from '../../atoms/button';
+import Notification from '../notification';
 
 class Navbar extends Component {
     render() {
@@ -10,6 +11,8 @@ class Navbar extends Component {
         if (this.props.loggedIn) {
             buttons = (
                 <div>
+                    <Notification />
+                    <Link to="/account/edit">Editar conta</Link>
                     <Button onClick={this.props.logout}>Logout</Button>
                 </div>
             );

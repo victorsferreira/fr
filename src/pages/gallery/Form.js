@@ -69,8 +69,6 @@ class Form extends Component {
                     })
                 }
 
-                <Button onClick={this.addPhoto}>Adicionar foto</Button>
-
                 <Button onClick={this.save}>Editar</Button>
             </div>
         );

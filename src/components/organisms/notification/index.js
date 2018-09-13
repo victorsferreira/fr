@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import StyledNotification from './styled';
 import NotificationItem from './item';
 import { connect } from 'react-redux';
-// import { getNotifications } from '../../redux/actions/notification';
+import { getNotifications } from '../../../redux/actions';
 
 class Notification extends Component {
     constructor() {
         super();
 
         this.state = {
-            open: false
+            open: false,
+            notifications: []
         };
     }
 
     componentDidMount() {
-        // this.props.dispatch(getNotifications());
+        this.props.dispatch(getNotifications())
+            .then(({ payload }) => {
+                const { notifications } = payload;
+                
+                this.setState({ notifications });
+            });
     }
 
     toggleNotifications = () => {
@@ -22,7 +28,7 @@ class Notification extends Component {
     }
 
     render() {
-        const notifications = this.props.notification.list.map((notificationItem, i) => {
+        const notifications = this.state.notifications.map((notificationItem, i) => {
             return (
                 <NotificationItem key={i} {...notificationItem} dispatch={this.props.dispatch} />
             );
@@ -32,7 +38,7 @@ class Notification extends Component {
             <div className="notification">
                 <StyledNotification>
                     <button onClick={this.toggleNotifications}>Notificações</button>
-                    <div className="list"> { this.state.open && notifications} </div>
+                    <div className="list"> {this.state.open && notifications} </div>
                 </StyledNotification>
             </div>
         );

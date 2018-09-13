@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StyledImage from './styled';
 
+import { get } from '../../../libs/api';
+
 class Image extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,7 @@ class Image extends Component {
   }
 
   getFileUrl() {
-    this.request = get('/files/' + this.props.key);
+    this.request = get(`/file/${this.props.imageKey}`);
     this.request.exec()
       .then((response) => {
         this.setState({ src: response.data.url });
@@ -34,7 +36,7 @@ class Image extends Component {
   }
 
   load() {
-    if (this.props.key) {
+    if (this.props.imageKey) {
       this.getFileUrl();
     } else if (this.props.file) {
       this.loadFile();

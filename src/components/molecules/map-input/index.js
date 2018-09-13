@@ -8,8 +8,10 @@ export default class MapInput extends Component {
     };
 
     render() {
-        const value = value ? JSON.parse(this.props.value) : null;
+        let value = this.props.value || null;
+        if(typeof(value) === 'string') value = JSON.parse(this.props.value);
         const display = value ? value.display : '';
+        
         return (
             <div>
                 <input disabled value={ display } />
