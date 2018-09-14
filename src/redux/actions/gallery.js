@@ -4,6 +4,19 @@ export const GET_GALLERY_PHOTOS = 'GET_GALLERY_PHOTOS';
 export const EDIT_GALLERY_PHOTO = 'EDIT_GALLERY_PHOTO';
 export const DELETE_GALLERY_PHOTO = 'DELETE_GALLERY_PHOTO';
 export const UPLOAD_GALLERY_PHOTOS = 'UPLOAD_GALLERY_PHOTOS';
+export const GET_PROFILE_GALLERY = 'GET_PROFILE_GALLERY';
+
+export function getProfileGallery(id, galleryId) {
+    return (dispatch) => {
+        return get(`account/${id}/gallery/${galleryId}`).exec()
+            .then((response) => {
+                return dispatch({
+                    type: GET_PROFILE_GALLERY,
+                    payload: { id, galleryId, gallery: response.data }
+                });
+            });
+    };
+}
 
 export function getGalleryPhotos(id) {
     return (dispatch) => {

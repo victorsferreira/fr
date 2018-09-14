@@ -46,7 +46,7 @@ export default class Sidebar extends Component {
     render() {
         return (
             <StyledSidebar>
-                <li><Link to={"/my-profile"}>Meu perfil</Link></li>
+                <li><Link to={"/account/myself"}>Meu perfil</Link></li>
                 {this.props.type === 'user' && this.getUserButtons()}
                 {this.props.type === 'seller' && this.getSellerButtons()}
                 {this.props.type === 'partner' && this.getPartnerButtons()}

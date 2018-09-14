@@ -1,6 +1,7 @@
 import { put, post, get, createFormData } from '../../libs/api';
 import { CREATE_SESSION } from './session';
 
+export const GET_PROFILE = 'GET_PROFILE';
 export const MY_PROFILE = 'MY_PROFILE';
 export const EDIT_ACCOUNT = 'EDIT_ACCOUNT';
 export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
@@ -44,6 +45,20 @@ export const getMyProfile = () => {
                     type: MY_PROFILE,
                     payload: {
                         myProfile: response.data
+                    }
+                });
+            });
+    };
+};
+
+export const getProfile = (id) => {
+    return (dispatch) => {
+        return get(`/account/${id}/profile`).exec()
+            .then((response) => {
+                return dispatch({
+                    type: GET_PROFILE,
+                    payload: {
+                        profile: response.data
                     }
                 });
             });
