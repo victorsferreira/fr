@@ -28,7 +28,7 @@ class Notification extends Component {
     }
 
     render() {
-        const notifications = this.state.notifications.map((notificationItem, i) => {
+        const notifications = this.props.notification.list.map((notificationItem, i) => {
             return (
                 <NotificationItem key={i} {...notificationItem} dispatch={this.props.dispatch} />
             );

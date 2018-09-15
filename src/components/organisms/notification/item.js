@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { acceptFollowRequest, declineFollowRequest } from '../../redux/actions';
+import { acceptFollowRequest, declineFollowRequest } from '../../../redux/actions';
 
 function relativeTime(time) {
     const currentTime = Date.now();
@@ -19,11 +19,11 @@ class NotificationItem extends Component {
     }
 
     acceptFollowRequest = (id) => {
-        // this.props.dispatch(acceptFollowRequest(id));
+        this.props.dispatch(acceptFollowRequest(id));
     }
 
     declineFollowRequest = (id) => {
-        // this.props.dispatch(declineFollowRequest(id));
+        this.props.dispatch(declineFollowRequest(id));
     }
 
     createFollowRequest() {

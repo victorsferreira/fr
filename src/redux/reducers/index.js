@@ -5,6 +5,7 @@ import activity from './activity';
 import product from './product';
 import service from './service';
 import account from './account';
+import notification from './notification';
 
 export default combineReducers({
     session,
@@ -12,5 +13,6 @@ export default combineReducers({
     activity,
     product,
     service,
-    account
+    account,
+    notification
 });

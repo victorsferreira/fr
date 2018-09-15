@@ -1,10 +1,11 @@
-import { put, post, get, createFormData } from '../../libs/api';
+import { put, post, get, del, createFormData } from '../../libs/api';
 import { CREATE_SESSION } from './session';
 
 export const GET_PROFILE = 'GET_PROFILE';
 export const MY_PROFILE = 'MY_PROFILE';
 export const EDIT_ACCOUNT = 'EDIT_ACCOUNT';
-export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+export const FOLLOW = 'FOLLOW';
+export const UNFOLLOW = 'UNFOLLOW';
 
 export const register = (type, data) => {
     const formData = createFormData(data);
@@ -65,14 +66,29 @@ export const getProfile = (id) => {
     };
 };
 
-export const getNotifications = (key) => {
+export const follow = (id) => {
     return (dispatch) => {
-        return get('/account/notification').exec()
+        return put(`/account/${id}/follow`).exec()
             .then((response) => {
                 return dispatch({
-                    type: GET_NOTIFICATIONS,
+                    type: FOLLOW,
                     payload: {
-                        notifications: response.data
+                        account: response.data.account,
+                        status: response.data.status
+                    }
+                });
+            });
+    }
+};
+
+export const unfollow = (id) => {
+    return (dispatch) => {
+        return del(`/account/${id}/follow`).exec()
+            .then((response) => {
+                return dispatch({
+                    type: UNFOLLOW,
+                    payload: {
+                        account: response.data.account
                     }
                 });
             });

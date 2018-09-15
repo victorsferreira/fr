@@ -38,12 +38,25 @@ class Profile extends Component {
 
   follow = () => {
     const id = this.props.match.params.id;
-    this.props.dispatch(follow(id));
+    this.props.dispatch(follow(id))
+      .then(({ payload }) => {
+        const { status } = payload;
+        const { profile } = this.state;
+        profile.followingStatus = status;
+
+        this.setState({ profile })
+      });
   }
 
   unfollow = () => {
     const id = this.props.match.params.id;
-    this.props.dispatch(unfollow(id));
+    this.props.dispatch(unfollow(id))
+      .then(({ payload }) => {
+        const { profile } = this.state;
+        profile.followingStatus = 'none';
+
+        this.setState({ profile })
+      });
   }
 
   iAmUser() {
@@ -54,14 +67,14 @@ class Profile extends Component {
     return profile.type === 'user';
   }
 
-  profileIsNotMyself(profile){
+  profileIsNotMyself(profile) {
     return profile.id !== this.props.session.account.id;
   }
 
   render() {
     const profile = this.state.profile || {};
     const extra = profile.extra || {};
-    console.log(this.iAmUser() , this.profileIsUser(profile) , this.profileIsNotMyself(profile))
+    console.log(this.iAmUser(), this.profileIsUser(profile), this.profileIsNotMyself(profile))
 
     return (
       <div className="Profile">

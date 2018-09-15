@@ -8,6 +8,7 @@ export * from './account';
 export * from './file';
 export * from './product';
 export * from './gallery';
+export * from './notification';
 
 export function getResourceList(resource, options = {}) {
     const type = `GET_${toActionName(resource)}_LIST`;

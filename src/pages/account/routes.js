@@ -15,5 +15,5 @@ export default [
     { component: ResetPassword, path: '/reset-password/:token' },
     { component: MyProfile, path: '/account/myself' },
     { component: Gallery, path: '/account/:id/gallery/:galleryId' },
-    { component: Profile, path: '/account/:id' }
+    { component: Profile, path: '/account/:id/profile' }
 ];
