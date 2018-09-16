@@ -74,8 +74,7 @@ class Profile extends Component {
   render() {
     const profile = this.state.profile || {};
     const extra = profile.extra || {};
-    console.log(this.iAmUser(), this.profileIsUser(profile), this.profileIsNotMyself(profile))
-
+    
     return (
       <div className="Profile">
         {

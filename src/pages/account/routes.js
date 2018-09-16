@@ -5,7 +5,8 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import MyProfile from './MyProfile';
 import Gallery from './Gallery';
-import Profile from './Profile';
+import UserProfile from './UserProfile';
+import BrandProfile from './BrandProfile';
 
 export default [
     { component: Login, path: '/login' },
@@ -15,5 +16,6 @@ export default [
     { component: ResetPassword, path: '/reset-password/:token' },
     { component: MyProfile, path: '/account/myself' },
     { component: Gallery, path: '/account/:id/gallery/:galleryId' },
-    { component: Profile, path: '/account/:id/profile' }
+    { component: UserProfile, path: '/user/:id/profile' },
+    { component: BrandProfile, path: '/brand/:id/profile' }
 ];

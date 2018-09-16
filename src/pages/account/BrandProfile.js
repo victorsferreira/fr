@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import Image from '../../components/atoms/image';
 
-import { getResourceProfile } from '../../redux/actions';
+import { getBrandProfile } from '../../redux/actions';
 
-class Profile extends Component {
+class BrandProfile extends Component {
   constructor() {
     super();
 
@@ -16,8 +16,9 @@ class Profile extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.dispatch(getResourceProfile('service',id))
+    this.props.dispatch(getBrandProfile(id))
       .then(({ payload }) => {
+          console.log(payload)
         const { profile } = payload;
         this.setState({ profile });
       });
@@ -25,17 +26,19 @@ class Profile extends Component {
 
   render() {
     const profile = this.state.profile || {};
+    const extra = profile.extra || {};
 
     return (
-      <div className="Profile">
+      <div className="BrandProfile">
         {
           profile ? (
             <Fragment>
-              <span>{profile.name}</span>
-              <p>{profile.description}</p>
+              <span>{profile.email}</span>
+              <span>{profile.username}</span>
+              <span>{extra.name}</span>
 
-              {profile.photo && <Image imageKey={profile.photo} />}
-              {profile.cover && <Image imageKey={profile.cover} />}
+              {extra.photo && <Image imageKey={extra.photo} />}
+              {extra.cover && <Image imageKey={extra.cover} />}
             </Fragment>
           ) : null
         }
@@ -48,4 +51,4 @@ const mapStateToProps = ({ session }) => {
   return { session };
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(BrandProfile);

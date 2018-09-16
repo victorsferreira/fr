@@ -61,7 +61,20 @@ export function getResourceProfile(resource, id) {
             .then((response) => {
                 return dispatch({
                     type,
-                    payload: { item: response.data, id }
+                    payload: { profile: response.data, id }
+                });
+            });
+    };
+};
+
+// REMOVER
+export function getBrandProfile(id) {
+    return (dispatch) => {
+        return get(`account/brand/${id}/profile`).exec()
+            .then((response) => {
+                return dispatch({
+                    type: 'GET_BRAND_PROFILE',
+                    payload: { profile: response.data, id }
                 });
             });
     };
