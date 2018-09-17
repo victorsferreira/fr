@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Image from '../../components/atoms/image';
+import Relation from '../../components/organisms/relation';
 
 import { getBrandProfile } from '../../redux/actions';
 
@@ -18,7 +19,6 @@ class BrandProfile extends Component {
     const { id } = this.props.match.params;
     this.props.dispatch(getBrandProfile(id))
       .then(({ payload }) => {
-          console.log(payload)
         const { profile } = payload;
         this.setState({ profile });
       });
@@ -39,6 +39,8 @@ class BrandProfile extends Component {
 
               {extra.photo && <Image imageKey={extra.photo} />}
               {extra.cover && <Image imageKey={extra.cover} />}
+
+              {profile.id && <Relation type='brand' target={profile.id} />}
             </Fragment>
           ) : null
         }

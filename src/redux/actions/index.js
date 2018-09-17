@@ -9,6 +9,7 @@ export * from './file';
 export * from './product';
 export * from './gallery';
 export * from './notification';
+export * from './relation';
 
 export function getResourceList(resource, options = {}) {
     const type = `GET_${toActionName(resource)}_LIST`;
