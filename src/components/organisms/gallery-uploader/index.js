@@ -16,7 +16,7 @@ class GalleryUploader extends Component {
     }
 
     componentDidMount() {
-        const { id } = this.props.match.params;
+        const { id } = this.props;
         this.props.dispatch(getGalleryPhotos(id))
             .then(({ payload }) => {
                 const { photos } = payload;
@@ -34,7 +34,7 @@ class GalleryUploader extends Component {
     };
 
     save = () => {
-        const { id } = this.props.match.params;
+        const { id } = this.props;
         const { photos } = this.state;
 
         const uploadPhotos = photos.filter((photo) => {
@@ -53,7 +53,7 @@ class GalleryUploader extends Component {
     };
 
     remove = (index, photoId) => {
-        const { id } = this.props.match.params;
+        const { id } = this.props;
 
         if (photoId) {
             this.props.dispatch(deleteGalleryPhoto(id, photoId))
@@ -69,7 +69,7 @@ class GalleryUploader extends Component {
     };
 
     edit = (index, photoId) => {
-        const { id } = this.props.match.params;
+        const { id } = this.props;
         const photos = [...this.state.photos];
         const photo = photos[index];
         const { description } = photo;
@@ -83,16 +83,16 @@ class GalleryUploader extends Component {
     render() {
         return (
             <div>
-                <h1>Fotos da galeria</h1>
                 {
                     this.state.photos.map((photoProps, i) => {
                         return <PhotoItem
                             key={i}
                             index={i}
-                            {...photoProps}
                             onChange={this.onChange.bind(null, i)}
                             remove={this.remove.bind(null, i)}
                             edit={this.edit.bind(null, i)}
+                            {...photoProps}
+                            imageKey={photoProps.key}
                         />
                     })
                 }
