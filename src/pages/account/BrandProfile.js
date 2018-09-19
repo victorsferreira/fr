@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Image from '../../components/atoms/image';
 import Relation from '../../components/organisms/relation';
+import CommentArea from '../../components/organisms/comment-area';
 
 import { getBrandProfile } from '../../redux/actions';
 
@@ -41,6 +42,7 @@ class BrandProfile extends Component {
               {extra.cover && <Image imageKey={extra.cover} />}
 
               {profile.id && <Relation type='brand' target={profile.id} />}
+              {profile.id && <CommentArea type='relation' target={profile.id} />}
             </Fragment>
           ) : null
         }

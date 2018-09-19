@@ -10,6 +10,7 @@ export * from './product';
 export * from './gallery';
 export * from './notification';
 export * from './relation';
+export * from './comment';
 
 export function getResourceList(resource, options = {}) {
     const type = `GET_${toActionName(resource)}_LIST`;
